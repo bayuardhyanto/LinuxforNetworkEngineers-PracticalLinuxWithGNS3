@@ -1,0 +1,87 @@
+**************************************************************************
+
+
+Router#conf terminal
+Router(config)#int gi0/1
+Router(config-if)#ip address dhcp
+Router(config-if)#no shutdown
+Router(config-if)#
+Router(config-if)#exit
+Router(config)#ip domain-lookup
+Router(config)#end
+
+Router#ping google.com
+Translating "google.com"...domain server (192.168.122.1) [OK]
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 216.239.38.120, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 18/18/19 ms
+
+Router#conf terminal
+Router(config)#int gi0/0
+Router(config-if)#no shutdown
+Router(config-if)#ip address 10.1.1.1 255.255.255.0
+Router(config-if)#end
+Router#
+
+Router#sh ip int brief
+Interface                  IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0         10.1.1.1        YES manual up                    up
+GigabitEthernet0/1         192.168.122.135 YES DHCP   up                    up
+GigabitEthernet0/2         unassigned      YES unset  administratively down down
+GigabitEthernet0/3         unassigned      YES unset  administratively down down
+GigabitEthernet0/4         unassigned      YES unset  administratively down down
+GigabitEthernet0/5         unassigned      YES unset  administratively down down
+
+Router#conf terminal
+Router(config)#ip dhcp pool linux
+Router(dhcp-config)#network 10.1.1.0 255.255.255.0
+Router(dhcp-config)#default-router 10.1.1.1
+Router(dhcp-config)#dns-server 8.8.8.8
+Router(dhcp-config)#end
+Router#
+
+Router#sh ip int brief
+Interface                  IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0         10.1.1.1        YES manual up                    up
+GigabitEthernet0/1         192.168.122.135 YES DHCP   up                    up
+GigabitEthernet0/2         unassigned      YES unset  administratively down down
+GigabitEthernet0/3         unassigned      YES unset  administratively down down
+GigabitEthernet0/4         unassigned      YES unset  administratively down down
+GigabitEthernet0/5         unassigned      YES unset  administratively down down
+
+Router#ping 8.8.8.8
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 8.8.8.8, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 15/16/21 ms
+
+Router#debug ip dhcp server packet
+
+Router#sh ip dhcp binding
+Bindings from all pools not associated with VRF:
+IP address          Client-ID/              Lease expiration        Type
+                    Hardware address/
+                    User name
+10.1.1.2            01d6.1648.b09e.94       May 21 2020 12:03 PM    Automatic
+
+Router#wr
+Building configuration...
+[OK]
+
+Router#
+Router#conf terminal
+Router(config)#int gi0/1
+Router(config-if)#ip nat outside
+Router(config-if)#ex
+Router(config)#int gi0/0
+Router(config-if)#ip nat inside
+Router(config-if)#do wr
+Building configuration...
+[OK]
+
+Router(config-if)#
+Router(config-if)#ex
+Router(config)#ip nat inside source list 1 interface gi0/1 overload
+
+Router(config)#access-list 1 permit any
