@@ -141,6 +141,37 @@
                     }
                 ],
                 "suspend": false
+            },
+            {
+                "filters": {},
+                "link_id": "20cecdf2-1980-4833-b45f-ee999384a96f",
+                "nodes": [
+                    {
+                        "adapter_number": 0,
+                        "label": {
+                            "rotation": 0,
+                            "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
+                            "text": "e2",
+                            "x": 54,
+                            "y": 51
+                        },
+                        "node_id": "c7ab760b-eaed-4d2c-882c-6e05a388f1ee",
+                        "port_number": 2
+                    },
+                    {
+                        "adapter_number": 0,
+                        "label": {
+                            "rotation": 0,
+                            "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
+                            "text": "eth0",
+                            "x": -44,
+                            "y": 1
+                        },
+                        "node_id": "32a2ef38-96c2-4fec-87ee-9c50088d0bbb",
+                        "port_number": 0
+                    }
+                ],
+                "suspend": false
             }
         ],
         "nodes": [
@@ -254,7 +285,7 @@
                     "cdrom_image": "",
                     "cdrom_image_md5sum": null,
                     "cpu_throttling": 0,
-                    "cpus": 2,
+                    "cpus": 1,
                     "hda_disk_image": "vios-adventerprisek9-m.vmdk.SPA.156-2.T",
                     "hda_disk_image_md5sum": "83707e3cc93646da58ee6563a68002b5",
                     "hda_disk_interface": "virtio",
@@ -280,7 +311,7 @@
                     "platform": "x86_64",
                     "process_priority": "normal",
                     "qemu_path": "/usr/bin/qemu-system-x86_64",
-                    "ram": 1024,
+                    "ram": 750,
                     "usage": "There is no default password and enable password. There is no default configuration present."
                 },
                 "symbol": ":/symbols/affinity/circle/blue/router.svg",
@@ -410,6 +441,72 @@
                 "width": 72,
                 "x": -485,
                 "y": -166,
+                "z": 1
+            },
+            {
+                "compute_id": "vm",
+                "console": 5900,
+                "console_auto_start": false,
+                "console_type": "vnc",
+                "custom_adapters": [],
+                "first_port_name": "",
+                "height": 60,
+                "label": {
+                    "rotation": 0,
+                    "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
+                    "text": "UbuntuDesktopGuest19.04-1",
+                    "x": -67,
+                    "y": -25
+                },
+                "locked": false,
+                "name": "UbuntuDesktopGuest19.04-1",
+                "node_id": "32a2ef38-96c2-4fec-87ee-9c50088d0bbb",
+                "node_type": "qemu",
+                "port_name_format": "eth{0}",
+                "port_segment_size": 0,
+                "properties": {
+                    "adapter_type": "e1000",
+                    "adapters": 6,
+                    "bios_image": "",
+                    "bios_image_md5sum": null,
+                    "boot_priority": "c",
+                    "cdrom_image": "",
+                    "cdrom_image_md5sum": null,
+                    "cpu_throttling": 0,
+                    "cpus": 1,
+                    "hda_disk_image": "Ubuntu 19.04 (64bit).vmdk",
+                    "hda_disk_image_md5sum": "21535675c54507e9325bf8774a7bd73e",
+                    "hda_disk_interface": "virtio",
+                    "hdb_disk_image": "",
+                    "hdb_disk_image_md5sum": null,
+                    "hdb_disk_interface": "ide",
+                    "hdc_disk_image": "",
+                    "hdc_disk_image_md5sum": null,
+                    "hdc_disk_interface": "ide",
+                    "hdd_disk_image": "",
+                    "hdd_disk_image_md5sum": null,
+                    "hdd_disk_interface": "ide",
+                    "initrd": "",
+                    "initrd_md5sum": null,
+                    "kernel_command_line": "",
+                    "kernel_image": "",
+                    "kernel_image_md5sum": null,
+                    "legacy_networking": false,
+                    "linked_clone": true,
+                    "mac_address": "0c:31:e9:0b:bb:00",
+                    "on_close": "power_off",
+                    "options": "",
+                    "platform": "x86_64",
+                    "process_priority": "normal",
+                    "qemu_path": "/usr/bin/qemu-system-x86_64",
+                    "ram": 750,
+                    "usage": "There is no default password and enable password. There is no default configuration present."
+                },
+                "symbol": ":/symbols/affinity/circle/blue/client_vm.svg",
+                "template_id": "9a06cbe1-7f1a-4fc8-ab56-8e8ea2df1e5f",
+                "width": 60,
+                "x": -480,
+                "y": 45,
                 "z": 1
             }
         ]
